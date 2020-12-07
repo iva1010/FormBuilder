@@ -1,0 +1,13 @@
+p {
+  font-size: 1.5rem;
+}
+
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid #b40505;
+  }
+
+  &.ng-valid.ng-touched {
+    border: 1px solid #008003;
+  }
+}

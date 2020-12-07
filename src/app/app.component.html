@@ -1,0 +1,76 @@
+<div class="container">
+  <form class="card" [formGroup]="form" (submit)="submit()">
+    <h1>Форма регистрации</h1>
+
+    <!--Имя-->
+    <div class="form-control">
+      <label>Имя</label>
+      <input type="text" placeholder="Имя" formControlName="name" class="form-control">
+    </div>
+
+    <!--Фамилия-->
+    <div class="form-control">
+      <label>Фамилия</label>
+      <input type="text" placeholder="Фамилия" formControlName="lastName" class="form-control">
+    </div>
+
+    <!--Email-->
+    <div class="form-control">
+      <label>Email</label>
+      <input type="text" placeholder="Email" formControlName="email" class="form-control">
+      <div class="validation"
+           *ngIf="form.controls.email.invalid &&form.controls.email.touched"
+      >
+        <small *ngIf="form.controls.email.errors.required">
+          Поле email не может быть пустым
+        </small>
+        <small *ngIf="form.controls.email.errors.email">
+          Введите корректный email
+        </small>
+      </div>
+    </div>
+
+    <!--Pass-->
+    <div class="form-control">
+      <label>Пароль</label>
+      <input type="password" placeholder="Пароль" formControlName="password" class="form-control" >
+        <div class="validation"
+             *ngIf="form.controls.password.invalid &&form.controls.password.touched"
+        >
+          <small *ngIf="form.controls.password.errors.required">
+            Пароль не может быть пустым
+          </small>
+          <small *ngIf="form.controls.password.errors.minlength">
+            Минимум 6 символов
+          </small>
+          <small *ngIf="form.controls.password.errors.pattern">
+            Пароль не может состоять только из спецсиволов
+          </small>
+        </div>
+    </div>
+
+    <!--<pre>{{form.controls.doublePassword.errors | json}}</pre>-->
+
+    <!--PassConf-->
+    <div class="form-control">
+      <label>Подтвердите пароль</label>
+      <input type="password" placeholder="Повторите пароль" formControlName="doublePassword" class="form-control">
+        <div class="validation"
+             *ngIf="form.controls.doublePassword.invalid &&form.controls.doublePassword.touched"
+        >
+          <small *ngIf="form.controls.doublePassword.errors.required">
+            Поле не должно быть пустым
+          </small>
+          <small *ngIf="form.controls.doublePassword.errors?.key">
+            Пароли не совпадают
+          </small>
+        </div>
+    </div>
+
+    <button class="btn" type="submit" [disabled]="form.invalid">Зарегестрироваться</button>
+
+  </form>
+</div>
+
+
+
